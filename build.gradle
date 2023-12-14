@@ -1,0 +1,69 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    withSourcesJar()
+
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "io.github.fiapsoat2grupo13" as Publication
+
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+
+            credentials {
+                // Sonatype username and password or use environment variables
+                username = System.getenv("OSSRH_USERNAME")
+                password = System.getenv("OSSRH_PASSWORD")
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.mavenJava
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${project.jupiter_version}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${project.jupiter_version}"
+    testRuntimeOnly "org.springframework.boot:spring-boot-starter-validation:${project.spring_boot_version}"
+
+    testImplementation "org.assertj:assertj-core:${project.assertj_core_version}"
+
+    implementation "jakarta.validation:jakarta.validation-api:${project.jakarta_validation_version}"
+    implementation "org.javamoney:moneta:${project.moneta_version}"
+    implementation "org.apache.commons:commons-lang3:${project.apache_commons_version}"
+
+    compileOnly "org.projectlombok:lombok:${project.lombok_version}"
+    annotationProcessor "org.projectlombok:lombok:${project.lombok_version}"
+
+    implementation "org.mapstruct:mapstruct:${project.mapstruct_version}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${project.mapstruct_version}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${project.lombok_mapstruct_binding}"
+}
+
