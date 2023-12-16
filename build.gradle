@@ -35,7 +35,12 @@ publishing {
 
     publications {
         maven(MavenPublication) {
+            groupId = 'br.com.fiap.tech.challenge'
+            artifactId = project.name
+            version = project.version
+
             from components.java
+            artifact sourcesJar
         }
     }
 }
