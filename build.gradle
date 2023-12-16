@@ -42,21 +42,20 @@ publishing {
 }
 
 dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${project.jupiter_version}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${project.jupiter_version}"
-    testRuntimeOnly "org.springframework.boot:spring-boot-starter-validation:${project.spring_boot_version}"
+    testImplementation libs.assertj.core
+    testImplementation libs.jupiter.api
+    testRuntimeOnly libs.jupiter.engine
+    testRuntimeOnly libs.spring.boot.validation
 
-    testImplementation "org.assertj:assertj-core:${project.assertj_core_version}"
+    implementation libs.validation.api
+    implementation libs.moneta
+    implementation libs.commons.lang3
+    implementation libs.mapstruct
 
-    implementation "jakarta.validation:jakarta.validation-api:${project.jakarta_validation_version}"
-    implementation "org.javamoney:moneta:${project.moneta_version}"
-    implementation "org.apache.commons:commons-lang3:${project.apache_commons_version}"
+    compileOnly libs.lombok
 
-    compileOnly "org.projectlombok:lombok:${project.lombok_version}"
-    annotationProcessor "org.projectlombok:lombok:${project.lombok_version}"
-
-    implementation "org.mapstruct:mapstruct:${project.mapstruct_version}"
-    annotationProcessor "org.mapstruct:mapstruct-processor:${project.mapstruct_version}"
-    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${project.lombok_mapstruct_binding}"
+    annotationProcessor libs.lombok
+    annotationProcessor libs.mapstruct.processor
+    annotationProcessor libs.lombok.mapstruct.binding
 }
 
