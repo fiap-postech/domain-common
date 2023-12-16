@@ -34,12 +34,8 @@ publishing {
     }
 
     publications {
-        maven(MavenPublication) {
-//            groupId = "fiap-postech"
-//            artifactId = project.name
-//            version = project.version
-
-            from components.java
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
