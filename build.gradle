@@ -1,7 +1,6 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'signing'
 }
 
 version '1.0.0'
@@ -23,29 +22,22 @@ test {
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = "io.github.fiapsoat2grupo13" as Publication
-
-            from components.java
-        }
-    }
     repositories {
         maven {
-            url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/fiap-postech/domain-common"
             credentials {
-                // Sonatype username and password or use environment variables
-                username = System.getenv("OSSRH_USERNAME")
-                password = System.getenv("OSSRH_PASSWORD")
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
-}
 
-signing {
-    useGpgCmd()
-    sign publishing.publications.mavenJava
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
 }
 
 dependencies {
