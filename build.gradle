@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
+group: 'br.com.fiap.tech.challenge'
 version '1.0.0'
 
 repositories {
