@@ -25,7 +25,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = "https://maven.pkg.github.com"
+            url = "https://maven.pkg.github.com/fiap-postech/domain-common"
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
@@ -35,9 +35,9 @@ publishing {
 
     publications {
         maven(MavenPublication) {
-            groupId = "fiap-postech"
-            artifactId = project.name
-            version = project.version
+//            groupId = "fiap-postech"
+//            artifactId = project.name
+//            version = project.version
 
             from components.java
         }
