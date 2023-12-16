@@ -1,11 +1,17 @@
-name: Publish package to the Maven Central Repository
+name: Publish package to GitHub Packages
+
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -24,5 +30,4 @@ jobs:
         with:
           arguments: publish
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.JAVA_TOKEN }}
