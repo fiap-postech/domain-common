@@ -1,14 +1,14 @@
 plugins {
-    id 'tech.challenge.library' version '1.0.0'
+    id 'tech.challenge.library' version '1.0.1'
 }
 
 group 'br.com.fiap.tech.challenge'
-version '1.0.0'
+version '1.0.1'
 
 dependencies {
-    testRuntimeOnly libs.spring.boot.validation
+    testRuntimeOnly sharedLibs.spring.boot.validation
 
-    implementation libs.validation.api
-    implementation libs.moneta
-    implementation libs.commons.lang3
+    implementation sharedLibs.validation.api
+    implementation sharedLibs.moneta
+    implementation sharedLibs.commons.lang3
 }

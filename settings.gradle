@@ -1,7 +1,18 @@
 pluginManagement {
     repositories {
-        mavenLocal()
         gradlePluginPortal()
+
+//        mavenLocal()
+        maven {
+            url = uri("https://maven.pkg.github.com/fiap-postech/gradle-plugins")
+            credentials {
+                username = System.properties["gprUser"] ?: System.getenv("GITHUB_ACTOR")
+                password = System.properties["gprKey"] ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+
+//        mavenLocal()
+//        gradlePluginPortal()
     }
 }
 
@@ -9,6 +20,20 @@ dependencyResolutionManagement {
     repositories {
         mavenLocal()
         mavenCentral()
+
+        maven {
+            url = uri("https://maven.pkg.github.com/fiap-postech/gradle-version-catalog")
+            credentials {
+                username = System.properties["gprUser"] ?: System.getenv("GITHUB_ACTOR")
+                password = System.properties["gprKey"] ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    versionCatalogs {
+        create("sharedLibs") {
+            from("br.com.fiap.tech.challenge:gradle-version-catalog:1.0.0")
+        }
     }
 }
 
