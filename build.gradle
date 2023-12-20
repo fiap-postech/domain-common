@@ -1,6 +1,22 @@
-plugins {
-    id 'tech.challenge.library' version '1.0.1'
+buildscript {
+    repositories {
+        gradlePluginPortal()
+
+        maven {
+            url = uri("https://maven.pkg.github.com/fiap-postech/gradle-plugins")
+            credentials {
+                username = System.properties["gprUser"] ?: System.getenv("GITHUB_ACTOR")
+                password = System.properties["gprKey"] ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    dependencies {
+        classpath 'tech.challenge.library:tech.challenge.library.gradle.plugin:1.0.2'
+    }
 }
+
+apply plugin: 'tech.challenge.library'
 
 group 'br.com.fiap.tech.challenge'
 version '1.0.1'

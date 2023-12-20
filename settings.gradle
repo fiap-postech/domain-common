@@ -1,21 +1,3 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-
-//        mavenLocal()
-        maven {
-            url = uri("https://maven.pkg.github.com/fiap-postech/gradle-plugins")
-            credentials {
-                username = System.properties["gprUser"] ?: System.getenv("GITHUB_ACTOR")
-                password = System.properties["gprKey"] ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-
-//        mavenLocal()
-//        gradlePluginPortal()
-    }
-}
-
 dependencyResolutionManagement {
     repositories {
         mavenLocal()
