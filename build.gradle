@@ -1,14 +1,30 @@
-plugins {
-    id 'tech.challenge.library' version '1.0.0'
+buildscript {
+    repositories {
+        gradlePluginPortal()
+
+        maven {
+            url = uri("https://maven.pkg.github.com/fiap-postech/gradle-plugins")
+            credentials {
+                username = System.getProperty("gprUser") ?: System.getenv("GITHUB_ACTOR")
+                password = System.getProperty("gprKey") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    dependencies {
+        classpath 'tech.challenge.library:tech.challenge.library.gradle.plugin:1.0.2'
+    }
 }
 
+apply plugin: 'tech.challenge.library'
+
 group 'br.com.fiap.tech.challenge'
-version '1.0.0'
+version '1.0.2'
 
 dependencies {
-    testRuntimeOnly libs.spring.boot.validation
+    testRuntimeOnly sharedLibs.spring.boot.validation
 
-    implementation libs.validation.api
-    implementation libs.moneta
-    implementation libs.commons.lang3
+    implementation sharedLibs.validation.api
+    implementation sharedLibs.moneta
+    implementation sharedLibs.commons.lang3
 }
