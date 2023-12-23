@@ -12,7 +12,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'tech.challenge.library:tech.challenge.library.gradle.plugin:1.0.2'
+        classpath 'tech.challenge.library:tech.challenge.library.gradle.plugin:1.0.3'
     }
 }
 
@@ -22,9 +22,9 @@ group 'br.com.fiap.tech.challenge'
 version '1.0.2'
 
 dependencies {
-    testRuntimeOnly sharedLibs.spring.boot.validation
+    testRuntimeOnly sharedLibs.spring.boot.starter.validation
 
-    implementation sharedLibs.validation.api
+    implementation sharedLibs.jakarta.validation.api
     implementation sharedLibs.moneta
     implementation sharedLibs.commons.lang3
 }
