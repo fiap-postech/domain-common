@@ -19,7 +19,7 @@ buildscript {
 apply plugin: 'tech.challenge.library'
 
 group 'br.com.fiap.tech.challenge'
-version '1.0.2'
+version '1.0.3'
 
 dependencies {
     testRuntimeOnly sharedLibs.spring.boot.starter.validation
