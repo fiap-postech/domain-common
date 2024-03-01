@@ -30,11 +30,19 @@ public class DocumentValidator implements ConstraintValidator<DocumentCustomer, 
     private static final int[] CNPJ_WEIGHT = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
     public static final String REGEX_NOT_DIGIT = "\\D";
 
+    private boolean required;
+
+    @Override
+    public void initialize(DocumentCustomer annotation) {
+        required = annotation.required();
+    }
+
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (StringUtils.isBlank(value)) {
-            return false;
+            return !required;
         }
+
         var formattedDocument = value.replaceAll(REGEX_NOT_DIGIT, Strings.EMPTY);
         if(formattedDocument.length() == ELEVEN) {
             return isValidCPF(formattedDocument);

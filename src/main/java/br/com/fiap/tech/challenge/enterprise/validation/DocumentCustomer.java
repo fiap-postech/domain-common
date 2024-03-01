@@ -23,6 +23,8 @@ public @interface DocumentCustomer {
 
     String message() default "The provided document is invalid";
 
+    boolean required() default true;
+
     Class<?>[] groups () default {};
 
     Class<? extends Payload>[] payload () default {};
